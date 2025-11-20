@@ -1,5 +1,7 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.models;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,11 +13,11 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity // Entity sará una tabella
 @Table(name = "pizze")
-public class pizza {
+public class Pizze {
     // ogni variabile di istanza sará una colonna
-    //le annotazioni definiscono il tipo di dato
+    // le annotazioni definiscono il tipo di dato
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -28,11 +30,10 @@ public class pizza {
 
     @Lob
     @Column(nullable = false)
-
-     private String image;
+    private String image;
 
     @Column(nullable = false)
-    private Integer price;
+    private BigDecimal price;
 
     public Integer getId() {
         return this.id;
@@ -66,24 +67,16 @@ public class pizza {
         this.image = image;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return this.price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
-   
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", image='" + getImage() + "'" +
-            ", price='" + getPrice() + "'" +
-            "}";
+        return String.format("%s, %s, %s", this.name, this.description, this.price);
     }
-    
 }
