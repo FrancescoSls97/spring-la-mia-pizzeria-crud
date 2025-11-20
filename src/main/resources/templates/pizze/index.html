@@ -21,6 +21,7 @@
                             <th>Pizza</th>
                             <th>Ingredienti</th>
                             <th>Prezzo</th>
+                            <th>Dettagli</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,7 @@
                             <td>[[*{name}]]</td>
                             <td>[[*{description}]]</td>
                             <td>[[*{price}]] €</td>
+                            <td><a th:href="@{'/pizze/' + ${pizze.id}}" class="btn btn-success btn-lg">Dettagli</a></td>
                         </tr>
                     </tbody>
                 </table>

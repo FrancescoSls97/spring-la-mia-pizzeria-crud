@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+    <th:block>
+        <!--card-->
+        <div th:fragment="card" class="card" style="width: 20rem;" th:object="${pizze}">
+            <img src="" class="card-img-top" th:alt="*{name}">
+            <div class="card-body">
+                <h3 class="card-title">[[*{name}]]</h3>
+                <p class="card-text fs-5">[[*{description}]]</p>
+                <p class="card-text fs-4">[[*{price}]] €</p>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+</html>
