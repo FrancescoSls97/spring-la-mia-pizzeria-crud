@@ -77,6 +77,6 @@ public class Pizze {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s", this.name, this.description, this.price);
+        return String.format("%s %s %s", this.name, this.description, this.price);
     }
 }

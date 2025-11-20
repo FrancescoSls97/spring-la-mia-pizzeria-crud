@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/resources :: head}">
+<head>
+    <th:block th:replace="~{fragments/resources :: head}" />
     <title>Le Nostre Pizze</title>
 </head>
 
@@ -23,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="pizze : ${pizze}" th:object="${pizze}" >
+                        <tr th:each="pizze : ${pizze}" th:object="${pizze}">
                             <td>[[*{name}]]</td>
                             <td>[[*{description}]]</td>
                             <td>[[*{price}]] €</td>
