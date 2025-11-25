@@ -22,14 +22,46 @@
                             <th>Ingredienti</th>
                             <th>Prezzo</th>
                             <th>Dettagli</th>
+                            <th>Modifica</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="pizze : ${pizze}" th:object="${pizze}">
+                        <tr th:each="pizza : ${pizze}" th:object="${pizza}">
                             <td>[[*{name}]]</td>
                             <td>[[*{description}]]</td>
                             <td>[[*{price}]] €</td>
-                            <td><a th:href="@{'/pizze/' + ${pizze.id}}" class="btn btn-success btn-lg">Dettagli</a></td>
+                            <td><a th:href="@{/pizze/{id}(id=${pizza.id})}" class="btn btn-primary">Dettagli</a></td>
+                            <td><a th:href="@{/pizze/edit/{id}(id=${pizza.id})}" class="btn btn-primary">Modifica</a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    th:data-bs-target="'#delete-modal' + ${pizza.id}">
+                                    Elimina
+                                </button>
+
+                                <div class="modal fade" th:id="'delete-modal' + ${pizza.id}" tabindex="-1"
+                                    th:attr="aria-labelledby='delete-modal' + ${pizza.id}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5">Elimina "[[${pizza.name}]]"</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler rimuovere "[[${pizza.name}]]" ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Annulla</button>
+                                                <form th:action="@{/pizze/delete/{id}(id=${pizza.id})}" method="post">
+                                                    <button class="btn btn-danger text-dark">Elimina</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -37,7 +69,11 @@
         </div>
 
         <p th:text="'Ci dispiace, ma al momento non ci sono pizze'" th:unless="${pizze.size() > 0}"></p>
+        <div class="m-3">
+            <a th:href="@{/pizze/create}" class="btn btn-primary">Aggiungi una pizza</a>
+        </div>
     </main>
+    <th:block th:replace="~{fragments/resources :: body}" />
 </body>
 
 </html>

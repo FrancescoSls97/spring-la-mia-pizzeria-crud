@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity // Entity sará una tabella
 @Table(name = "pizze")
@@ -21,18 +22,21 @@ public class Pizze {
     private Integer id;
 
     @Column(nullable = false)
-    @NotBlank
+    @NotBlank(message = "La tua pizza deve avere un nome")
     private String name;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false) 
+    @Lob 
+    @NotBlank (message = "Descrivi la tua pizza")
     private String description;
 
     @Lob
     @Column(nullable = false)
+    @NotBlank(message = "Inserisci un url con l' immagine della pizza")
     private String image;
 
     @Column(nullable = false)
+    @NotNull(message = "Inserisci un prezzo per la tua pizza")
     private BigDecimal price;
 
     public Integer getId() {
